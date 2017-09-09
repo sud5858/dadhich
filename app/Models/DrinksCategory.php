@@ -17,7 +17,11 @@ class DrinksCategory extends Model
 'drink_cat_name','meta_title','meta_keyword','status','image','details','slug'
     ];
 
+   /*    protected $casts  = [
+        'image' => 'array'
+    ];*/
 
+//-------------------relationship between  Drink Model ----------------------//
     
 public function Drink()
     {
@@ -25,36 +29,35 @@ public function Drink()
     }
     
 
+    //-------------insert a file via  type "uplodad"---------------------//
 
-
-public function setImageAttribute($value)
+/*
+    public function setImageAttribute($value)
     {
         $attribute_name = "image";
         $disk = "uploads";
         $destination_path = "drinks-category";
 
-        // if the image was erased
-        if ($value==null) {
-            // delete the image from disk
-            \Storage::disk($disk)->delete($this->image);
-            dd($this->image);
-
-            // set null in the database column
-            $this->attributes[$attribute_name] = null;
-        }
-
-        // if a base64 was sent, store it in the db
-        if (starts_with($value, 'data:image'))
-        {
-            // 0. Make the image
-            $image = \Image::make($value);
-            // 1. Generate a filename.
-            $filename = md5($value.time()).'.jpg';
-            // 2. Store the image on disk.
-            \Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
-            // 3. Save the path to the database
-            $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
-        }
+        $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
     }
+
+
+
+
+//   delete function ----------------------------------------------------//
+  
+
+   public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($obj) {
+            if (count((array)$obj->image)) {
+                foreach ($obj->image as $file_path) {
+                    \Storage::disk('uploads')->delete($file_path);
+                }
+            }
+        });
+    }
+  */
 
 }

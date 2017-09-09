@@ -44,7 +44,7 @@ class DrinksCategoryCrudController extends CrudController
             $this->crud->addColumn([
                 'name'  => 'image',
                 'label' => 'Image',
-                'type'=> 'image2',
+                'type'=> 'image',
                  
                
                
@@ -75,16 +75,15 @@ class DrinksCategoryCrudController extends CrudController
                 'label' => 'Details',
                 'type'  => 'wysiwyg',
             ],
-          
-              [ // image
-             'label' => "Image",
-              'name' => "image",
-              'type' => 'image',
-               'upload' => true,
-               'crop' => true, // set to true to allow cropping, false to disable
-               'aspect_ratio' => 0, // ommit or set to 0 to allow any aspect ratio
-                //'prefix' => 'uploads' //in case you only store the filename in the database, this text will be prepended to the database value 
+          [
+                'name'  => 'image',
+                'label' => 'Image',
+                'type'=> 'browse',
+                 
+               
+               
             ],
+ 
 
 
             
@@ -147,7 +146,8 @@ class DrinksCategoryCrudController extends CrudController
     public function indexfront(){
 
         $val= DrinksCategory::where('status', '=', 1)->get();
-        /*dd($val);*/
+      
+     /*   dd($val);*/
         return view('pages.drinks_categories')->with(compact('val')); 
     }
     /* -----------End of the  indexfront function------------------------------------------*/

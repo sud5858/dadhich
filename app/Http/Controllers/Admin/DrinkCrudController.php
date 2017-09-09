@@ -54,9 +54,9 @@ $this->crud->addColumn([
                ]);
               $this->crud->addColumn([
             
-                'name'  => 'drinks_image',
+                'name'  => 'image',
                 'label' => 'Image',
-                  'type' => 'image',
+                  'type' => 'image2',
 
                ]);
               $this->crud->addColumn([
@@ -116,11 +116,14 @@ $this->crud->addFields([
          'type' =>'wysiwyg',
         ],
 
-         [
-         'name' => 'drinks_image',
-         'label' =>' Image',
-         'type' =>'browse',
-        ],
+         [   // Upload
+    'name' => 'image',
+    'label' => 'image',
+    'type' => 'upload_multiple',
+    'upload' => true,
+    'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+],
+
          [
          'name' => 'status',
          'label' =>' Status',

@@ -31,9 +31,9 @@
 
 
 <?php
-if(isset($data->drinks_image)==null) {$url="noimg.jpg";}else{ $url=$data->drinks_image;}
+if(isset($data->image)==null) {$url="noimg.jpg";}else{ $url=$data->image[0];}
 ?>
-<img src="{{url($url)}}" class="img img-tumbnail img-responsive" >
+<img src="{{url('uploads')}}/{{$url}}" class="img img-tumbnail img-responsive" style="width: 100%;height: 280px;" >
 
 
 

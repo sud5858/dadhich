@@ -40,10 +40,10 @@
 <div class="col-md-6 col-sm-12 col-xs-12" style=" padding-top:50px">
 
 
-<?php
-if(isset($data['drinks_image'])) {$url=$data['drinks_image'];}else{ $url="noimage.jpg";}
-?>
-<img src="{{url($url)}}" class="img img-tumbnail img-responsive" style="width: 260px" >
+@for ($i = 0; $i < count($data->image); $i++)
+     <img src="{{ url('uploads') }}/{{ $data->image[$i] }}" class="img img-tumbnail img-responsive"  />
+  
+@endfor
 
 </div>
 
